@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{plantilla/plantilla}">
+<head th:fragment="head">
+<meta charset="utf-8">
+<title>Insert title here</title>
+</head>
+<body>
+<main id="main" class="content">
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-23">
+          <div class="card" style="width: 74rem;">
+            <div class="card-body">
+            <div layout:fragment="espacioLayout">
+                <a th:href="@{/nuevousuario}" class="btn btn-block btn-outline-info btn-sm"
+                    style="width: 15%">+Nuevo
+                </a>     
+                <h5 class="card-title">Detalle Usuarios</h5>      
+                <table class="table">  
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Id Usuario</th>
+                            <th scope="col">Id Taller</th>
+                            <th scope="col">Nmonico Usuario</th>
+                            <th scope="col">Identificacion</th>
+                            <th scope="col">Nombres</th>
+                            <th scope="col">Apellidos</th>
+                            <th scope="col">Tel.Contacto</th>
+                            <th scope="col">Cod. Perfil</th>
+                            <th scope="col">Clave</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col">Proceso</th>                                                                                                                                              
+                        </tr>
+                  </thead>     
+                  <tbody>
+                    <tr th:each="unUsuario, iterStat: ${listausuarios}">
+						<td th:text="${iterStat.count}"></td> <!-- Agrega la numeración de fila aquí -->                     
+                        <th th:text="${unUsuario.IDUSUARIO}"></th>
+                        <td th:text="${unUsuario.fkTaller.IDTALLER}"></td>
+                        <td th:text="${unUsuario.NMONICOUSUARIO}"></td>
+                        <td th:text="${unUsuario.IDENTIFICACION}"></td>
+                        <td th:text="${unUsuario.NOMBRES}"></td>
+                        <td th:text="${unUsuario.APELLIDOS}"></td>
+                        <td th:text="${unUsuario.TELCONTACTO}"></td>
+                        <td th:text="${unUsuario.CODPERFIL}"></td>
+                        <td th:text="${unUsuario.CLAVEUSR}"></td>
+                        <td th:text="${unUsuario.ESTATUSUSR}"></td>
+                        <td>
+                          <a th:href="@{/editarUsuario/} + ${unUsuario.IDUSUARIO}" class="btn btn-outline-info">
+                          	<i class="bi bi-file-arrow-up"></i>
+                          </a>
+                          <a th:href="@{/eliminarUsuario/} + ${unUsuario.IDUSUARIO}" class="btn btn-outline-danger">
+                          		<!-- onclick="return confirm('Seguro que desea eliminar el registro?');" -->
+                          	<i class="bi bi-eraser-fill"></i>
+                          </a>
+                        </td>    
+                        <td></td>                                                                                                                        
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+            <!-- End Default Table Example -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main><!-- End #main -->
+</body>
+</html>                

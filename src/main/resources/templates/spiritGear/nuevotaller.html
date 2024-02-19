@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{plantilla/plantilla}">
+    
+<head th:fragment="head">
+  <meta charset="utf-8">  
+</head>
+<body>
+  <main id="main" class="content">
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-23">
+          <div class="card" style="width: 50rem;">
+            <div class="card-body">
+              <div layout:fragment="espacioLayout">
+            	    <!-- DESDE AQUI INSERTA FORMA -->            		
+	                <h5 class="card-title"> Ingresar/Editar Taller</h5>	
+	                <!-- General Form Elements -->
+                  <form th:action="@{/insertarTaller}" th:object="${objTallerNuevo}" method="post" >
+                  	<input type="hidden" th:field="*{IDTALLER}">
+                    <div class="row mb-3">
+                      <label for="ingresoNmonico" class="col-sm-2 col-form-label">Nmonico Taller</label>
+                      <div class="col-sm-10">
+                        <input type="text" th:field="*{NMONICOTALLER}" class="form-control" id="NMONICATALLER"
+                          placeholder="Ingrese Nmonico">
+                      </div>
+                    </div>
+                    <div class="row mb-3">
+                      <label for="ingresoCallePrin" class="col-sm-2 col-form-label">Calle Principal</label>
+                      <div class="col-sm-10">
+                        <input type="text" th:field="*{CALLEPRINCIPAL}" class="form-control" id="CALLEPRINCIPAL"
+                          placeholder="Ingrese Calle Principal">
+                      </div>
+                    </div>
+                    <div class="row mb-3">
+                      <label for="ingresoCalleSec" class="col-sm-2 col-form-label">Calle Secundaria</label>
+                      <div class="col-sm-10">
+                        <input type="text" th:field="*{CALLESEGUNDARIA}" class="form-control" id="CALLESEGUNDARIA" placeholder="Ingrese Calle Secundaria">
+                      </div>
+                    </div>
+                    <div class="row mb-3">
+                      <label for="ingresoNumeroDir" class="col-sm-2 col-form-label">Nro Ubicacion</label>
+                      <div class="col-sm-10">
+                        <input type="text" th:field="*{NUMEROUBICA}" class="form-control" id="NUMEROUBICA" placeholder="Ingrese Nro. Ubicacion">
+                      </div>
+                    </div>
+                    <div class="row mb-3">
+                      <label for="ingresoDescipT" class="col-sm-2 col-form-label">Descripcion Taller</label>
+                      <div class="col-sm-10">
+                        <input type="text" th:field="*{DESCRIPTALLER}" class="form-control" id="DESCRIPTALLER" placeholder="Ingrese Decripcion Taller">
+                      </div>
+                    </div>
+
+                    <div  class="row mb-3">
+                      <label for="Estado" class="col-sm-2 col-form-label">Estatus</label>
+                      <!-- Determine checkbox state based on the object's status and whether it's a new object -->
+                      <div class="col-sm-10">  
+                        <input type="checkbox" class="form-check-input" id="estatusCheck" 
+                        th:checked="${objTallerNuevo.ESTATUS == 1}" />                 
+                        <!-- Hidden input to hold the actual value of ESTATUS -->  
+                        <input type="hidden" id="hiddenEstatus" name="ESTATUS" th:value="${objTallerNuevo.ESTATUS}" />
+                      </div>
+                      <!-- Include other form fields for creating or updating -->
+                    </div>
+                    <div class="row mb-3">
+                      <div class="col-sm-10">
+                        <button type="submit" class="btn btn-primary">Procesar</button>
+                      </div>
+                    </div>
+                  </form><!-- End General Form Elements -->            	 
+              	<!-- ARRIBA INSERTA FORMA -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+    <script>
+      // Function to set the value of ESTATUS based on the checkbox state
+      function setStatusValue(checkbox) {
+        // Log to console for debugging purposes
+        console.log("Checkbox clicked. Checked status:", checkbox.checked);
+        var hiddenField = document.getElementById('hiddenEstatus');
+        hiddenField.value = checkbox.checked ? '1' : '0';
+      }
+    
+      // Event listener to change the value of the hidden input when the checkbox is clicked
+      document.addEventListener('DOMContentLoaded', function() {
+        var checkbox = document.getElementById('estatusCheck');
+        if (checkbox) {
+          checkbox.addEventListener('change', function() {
+            setStatusValue(this);
+          });
+          // Initialize hidden field value based on the checkbox state on page load
+          setStatusValue(checkbox);
+        } else {
+          console.error('Checkbox with id "estatusCheck" not found.');
+        }
+      });
+    </script>
+    
+  </main><!-- End #main -->  
+</body>
+</html>

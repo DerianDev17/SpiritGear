@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/Layout"
+    layout:decorate="~{plantilla/plantilla}">
+
+<head>
+    <meta charset="utf-8">  
+</head>
+<body>
+  <main id="main" class="content">
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-23">
+          <div class="card" style="width: 50rem;">
+            <div class="card-body">
+              <div layout:fragment="espacioLayout">           
+				<a th:href= "@{/nuevoprodserv/{id}(id=${idProveedorSel})}"  class="btn btn-block btn-outline-info btn-sm"
+					style="width: 15%">+Nuevo</a>
+                <h5 class="card-title">Producto/Servicio</h5>
+                  <!-- Default Table -->
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Id Servicio</th>
+                        <th scope="col">Id Proveedor</th>                        
+                        <th scope="col">Tipo Prod/Serv</th>                        
+                        <th scope="col">Nmonico</th>                        
+                        <th scope="col">Descripcion</th>                        
+                        <th scope="col">S/N Ubicacion</th>                      
+                        <th scope="col">Bnd Existe</th>
+                        <th scope="col">Contador</th>
+                        <th scope="col">Costo Compra</th>
+                        <th scope="col">Costo Venta</th>
+                        <th scope="col">Proceso</th>
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr th:each="unProductoSrv, iterStat : ${listaProdServ}">
+                        <td th:text="${iterStat.count}"></td> <!-- Agrega la numeración de fila aquí -->
+                        <th th:text="${unProductoSrv.IDSERVICIO}"></th>
+                        <td th:text="${unProductoSrv.fkProdServicio.IDPROVEEDOR}"></td>
+                        <td th:text="${unProductoSrv.IDTRABAJOSERVICIO}"></td>
+                        <td th:text="${unProductoSrv.NMONICOSERVICIO}"></td>
+                        <td th:text="${unProductoSrv.DESCRIPCION}"></td>
+                        <td th:text="${unProductoSrv.SNREQUBICACION}"></td>
+                        <td th:text="${unProductoSrv.BNDEXISTENCIA}"></td>
+                        <td th:text="${unProductoSrv.CONTADOREXIS}"></td>
+                        <td th:text="${unProductoSrv.COSTOCOMPRA}"></td>
+                        <td th:text="${unProductoSrv.COSTOVENTA}"></td>
+                      <td>
+                        <a th:href="@{/editarProdServicio/} + ${unProductoSrv.IDSERVICIO}" class="btn btn-outline-info">
+                        	<i class="bi bi-file-arrow-up"></i>
+                        </a>
+                        <a th:href="@{/eliminarproductosrv/} + ${unProductoSrv.IDSERVICIO}" class="btn btn-outline-danger">
+                        	<i class="bi bi-eraser-fill"></i>
+                        </a>                      
+                      </td>    
+                      <td></td>                                                                                                
+                      </tr>
+                    </tbody>
+                  </table>
+                  <!-- End Default Table Example -->
+                </div>
+              </div>
+            </div>          
+          </div>
+        </div>
+    </section>
+
+  </main><!-- End #main -->
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{plantilla/plantilla}">
+<head th:fragment="head">
+  <meta charset="utf-8">  
+</head>
+
+<body>
+   <main id="main" class="content">
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-23">
+          <div class="card" style="width: 50rem;">
+            <div class="card-body">
+              <div layout:fragment="espacioLayout">
+              	<a th:href="@{/nuevoproveedor}" class="btn btn-block btn-outline-info btn-sm"
+					style="width: 15%">+Nuevo</a>
+                <h5 class="card-title">Proveedor</h5>
+                <!-- Default Table -->
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Id Proveedor</th>
+                      <th scope="col">Tipo Id</th>
+                      <th scope="col">Id Proveedor</th>
+                      <th scope="col">Nombre Completo</th>
+                      <th scope="col">Nombre Comercial</th>
+                      <th scope="col">Celular</th>
+                      <th scope="col">Email</th>
+                      <th scope="col">Proceso</th>                                                                                                                                              
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr th:each="unProveedor, iterStat: ${listaProveedor}">
+                      <td th:text="${iterStat.count}"></td> <!-- Agrega la numeración de fila aquí -->
+                      <th th:text="${unProveedor.IDPROVEEDOR}"></th>
+                      <td th:text="${unProveedor.TIPOIDPRV}"></td>
+                      <td th:text="${unProveedor.IDENTIFICAPRV}"></td>
+                      <td th:text="${unProveedor.NOMBRECOMPLETO}"></td>
+                      <td th:text="${unProveedor.NOMBRECOMERCIAL}"></td>
+                      <td th:text="${unProveedor.CELULAR}"></td>
+                      <td th:text="${unProveedor.EMAIL}"></td>
+                      <td>
+                        <a th:href="@{/editarproveedor/} + ${unProveedor.IDPROVEEDOR}" class="btn btn-outline-info">
+                        	<i class="bi bi-file-arrow-up"></i>
+                        </a>
+                        <a th:href="@{/eliminarproveedor/} + ${unProveedor.IDPROVEEDOR}" class="btn btn-outline-danger">
+                        	<i class="bi bi-eraser-fill"></i>
+                        </a>
+
+                        <a th:href="@{/listardetPrdSrvxProveedor/{id}(id=${unProveedor.IDPROVEEDOR})}" class="btn btn-outline-danger">
+                        	<i class="bi bi-bar-chart-steps"></i>
+                        </a>                        
+                      </td>    
+                      <td></td>                                                                                                
+                    </tr>
+                  </tbody>
+                </table>
+                <!-- End Default Table Example -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main><!-- End #main -->  
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{plantilla/plantilla}">
+<head th:fragment="head">
+<meta charset="utf-8">
+<title>Insert title here</title>
+</head>
+<body>
+<main id="main" class="content">
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-23">
+          <div class="card" style="width: 74rem;">
+            <div class="card-body">
+              <div layout:fragment="espacioLayout">
+              	<a th:href="@{/nuevotaller}" class="btn btn-block btn-outline-info btn-sm"
+					style="width: 15%">+Nuevo
+				</a>              
+                  <h5 class="card-title">Detalle Talleres</h5>
+                  <!-- Default Table -->
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Id Taller</th>
+                        <th scope="col">Nmonico Taller</th>
+                        <th scope="col">Calle Principal</th>
+                        <th scope="col">Calle Secundaria</th>
+                        <th scope="col">Nro.</th>
+                        <th scope="col">Descripcion Taller</th>
+                        <th scope="col">Estatus</th>
+                        <th scope="col">Proceso</th>                                                                                                                                              
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr th:each="unTaller, iterStat : ${listatalleres}">
+                        <td th:text="${iterStat.count}"></td> <!-- Agrega la numeración de fila aquí -->                        
+                        <th th:text="${unTaller.IDTALLER}"></th>
+                        <td th:text="${unTaller.NMONICOTALLER}"></td>
+                        <td th:text="${unTaller.CALLEPRINCIPAL}"></td>
+                        <td th:text="${unTaller.CALLESEGUNDARIA}"></td>
+                        <td th:text="${unTaller.NUMEROUBICA}"></td>
+                        <td th:text="${unTaller.DESCRIPTALLER}"></td>                    
+                        <td th:text="${unTaller.ESTATUS}"></td>                    
+                        <td>
+                          <a th:href="@{/editarTaller/} + ${unTaller.IDTALLER}" class="btn btn-outline-info">
+                          	<i class="bi bi-file-arrow-up"></i>
+                          </a>
+                          <a th:href="@{/eliminarTaller/} + ${unTaller.IDTALLER}" class="btn btn-outline-danger">
+                          		<!--  onclick="showMessage(200)"> -->
+                          	<i class="bi bi-eraser-fill"></i>
+                          </a>
+                        </td>    
+                        <td></td>                                                                                                
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              <!-- End Default Table Example -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main><!-- End #main -->
+</body>
+</html>

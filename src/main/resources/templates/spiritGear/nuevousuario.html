@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{plantilla/plantilla}">
+    
+<head th:fragment="head">
+  <meta charset="utf-8">  
+</head>
+<body>
+  <main id="main" class="content">
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-23">
+          <div class="card" style="width: 50rem;">
+            <div class="card-body">
+              <div layout:fragment="espacioLayout">
+            	    <!-- DESDE AQUI INSERTA FORMA -->            		
+	                <h5 class="card-title"> Ingresar/Editar Usuario</h5>	
+	                <!-- General Form Elements -->
+                  <form th:action="@{/insertarUsuario}" th:object="${objUsuarioNuevo}" method="post" >
+                  	<input type="hidden" th:field="*{IDUSUARIO}">
+					<div class="row mb-3">
+                      <label for="defineTaller" class="col-sm-2 col-form-label">Taller</label>
+                      <select class="form-select" th:field="*{fkTaller.IDTALLER}">
+                        <option value="0"></option>
+                        <option th:each="unTaller : ${listaTaller}"
+                          th:text="${unTaller.NMONICOTALLER} + '-' +  ${unTaller.DESCRIPTALLER}"
+                          th:value=" ${unTaller.IDTALLER}"></option>
+                      </select>
+                    </div>  
+                    <div class="row mb-3">
+                      <label for="ingresoNmonico" class="col-sm-2 col-form-label">Nmonico Usuario</label>
+                      <div class="col-sm-10">
+                        <input type="text" th:field="*{NMONICOUSUARIO}" class="form-control" id="NMONICOUSUARIO"
+                          placeholder="Ingrese Nmonico">
+                      </div>
+                    </div>
+                    
+                    <div class="row mb-3">
+                      <label for="ingresoIden" class="col-sm-2 col-form-label">Identificacion</label>
+                      <div class="col-sm-10">
+                        <input type="text" th:field="*{IDENTIFICACION}" class="form-control" id="IDENTIFICACION"
+                          placeholder="Ingrese Identificacion">
+                      </div>
+                    </div>                       
+                       
+                    <div class="row mb-3">
+                      <label for="ingresoNombre" class="col-sm-2 col-form-label">Nombres</label>
+                      <div class="col-sm-10">
+                        <input type="text" th:field="*{NOMBRES}" class="form-control" id="NOMBRES"
+                          placeholder="Ingrese Nombres">
+                      </div>
+                    </div>
+                    <div class="row mb-3">
+                      <label for="ingresoApellido" class="col-sm-2 col-form-label">Apellidos</label>
+                      <div class="col-sm-10">
+                        <input type="text" th:field="*{APELLIDOS}" class="form-control" id="APELLIDOS" placeholder="Ingrese Apellidos">
+                      </div>
+                    </div>  
+                    
+                    <div class="row mb-3">
+                      <label for="ingresoTelConta" class="col-sm-2 col-form-label">Telefono</label>
+                      <div class="col-sm-10">
+                        <input type="text" th:field="*{TELCONTACTO}" class="form-control" id="TELCONTACTO"
+                          placeholder="Ingrese Telefono">
+                      </div>
+                    </div>                       
+                    
+                    <!-- Dropdown for parametros selection -->
+                    <div class="row mb-3">
+                      <label for="definePerfil" class="col-sm-2 col-form-label">Perfil:</label>
+                      <select id="perfil" class="form-control" th:field="*{CODPERFIL}">
+                      <option th:each="unParam : ${listaParam}" 
+                        th:value="${unParam.SERIE}" 
+                        th:text="${unParam.SERIE} + '-' +  ${unParam.VALSTRING}"></option>
+                      </select>
+                    </div>         
+                    <!-- Dropdown for parametros selection -->
+                    <div class="row mb-3">
+                      <label for="defineClave" class="col-sm-2 col-form-label">Clave:</label>
+                      <div class="col-sm-10">
+                        <input type="text" th:field="*{CLAVEUSR}" class="form-control" id="CLAVEUSR"
+                          placeholder="Ingrese Clave">
+                      </div>
+                    </div>
+                    <div  class="row mb-3">
+                      <label for="Estado" class="col-sm-2 col-form-label">Estatus</label>
+                      <!-- Determine checkbox state based on the object's status and whether it's a new object -->
+                      <div class="col-sm-10">  
+                        <input type="checkbox" class="form-check-input" id="estatusCheck" 
+                        th:checked="${objUsuarioNuevo.ESTATUSUSR == 1}" />                 
+                        <!-- Hidden input to hold the actual value of ESTATUS -->  
+                        <input type="hidden" id="hiddenEstatus" name="ESTATUS" th:value="${objUsuarioNuevo.ESTATUSUSR}" />
+                      </div>
+                      <!-- Include other form fields for creating or updating -->
+                    </div>           
+					<div class="row mb-3">
+                      <div class="col-sm-10">
+                        <button type="submit" class="btn btn-primary">Procesar</button>
+                      </div>
+                    </div>                                                                                            	
+                  </form><!-- End General Form Elements -->            	 
+              	<!-- ARRIBA INSERTA FORMA -->
+              	 </div>
+              </div>
+            </div>
+          </div>
+        </div>	 
+    </section>
+  </main><!-- End #main -->  
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/Layout"
+    layout:decorate="~{plantilla/plantilla}">
+<head th:fragment="head">
+    <meta charset="utf-8">
+</head>
+<body>
+  <main id="main" class="content">
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-23">
+          <div class="card" style="width: 50rem;">
+            <div class="card-body">
+              <div layout:fragment="espacioLayout">
+                <!-- DESDE AQUI INSERTA FORMA -->
+                <h5 class="card-title">Ingresar/Modificar Producto/Servicio</h5>      
+                <!-- General Form Elements -->
+                <form th:action="@{/insertaProductoServicio}" th:object="${objProdSrvNuevo}" method="post">                
+				<input type="hidden" th:field="*{IDSERVICIO}">
+                <div class="row mb-3">
+                  <label for="tomaProv" class="col-sm-2 col-form-label">Proveedor</label>
+                  <select class="form-select" th:field="*{fkProdServicio.IDPROVEEDOR}">
+                    <option value="0"></option>
+                    <option th:each="unProveedor , stat: ${listaProveedor}"
+                      th:text="${unProveedor.IDPROVEEDOR} + '-' +  ${unProveedor.NOMBRECOMERCIAL}"
+                      th:value=" ${unProveedor.IDPROVEEDOR}"
+                      th:selected="${stat.first}"></option>                      
+                  </select>
+                </div>  
+                <div class="row mb-3">
+                  <label for="definePerfil" class="col-sm-2 col-form-label">Perfil:</label>
+                  <select id="idTrbServicio" class="form-control" th:field="*{IDTRABAJOSERVICIO}">
+                  <option th:each="unParam : ${listaParam}" 
+                    th:value="${unParam.SERIE}" 
+                    th:text="${unParam.SERIE} + '-' +  ${unParam.VALSTRING}"></option>
+                  </select>
+                </div> 
+                <div class="row mb-3">
+                  <label for="ingresoNmonico" class="col-sm-2 col-form-label">Nmonico Usuario</label>
+                  <div class="col-sm-10">
+                    <input type="text" th:field="*{NMONICOSERVICIO}" class="form-control" id="NMONICOUSUARIO"
+                      placeholder="Ingrese Nmonico">
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="ingresoDesc" class="col-sm-2 col-form-label">Nmonico Usuario</label>
+                  <div class="col-sm-10">
+                    <input type="text" th:field="*{DESCRIPCION}" class="form-control" id="DESCRIPCION"
+                      placeholder="Ingrese Descripcion">
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="defineReqUbica" class="col-sm-2 col-form-label">Requiere Ubica:</label>
+                  <select id="reqUbica" class="form-control" th:field="*{SNREQUBICACION}">
+                  <option th:each="unParamSN : ${listaParamS}" 
+                    th:value="${unParamSN.SERIE}" 
+                    th:text="${unParamSN.VALSTRING}"
+                    th:selected="${unParamSN.equals(objProdSrvNuevo.SNREQUBICACION)}"></option>
+                  </select>
+                </div> 
+                <div class="row mb-3">
+                  <label for="defineSNStock" class="col-sm-2 col-form-label">Maneja Stock:</label>
+                  <select id="snStock" class="form-control" th:field="*{BNDEXISTENCIA}">
+                  <option th:each="unParamSN : ${listaParamS}" 
+                    th:value="${unParamSN.SERIE}" 
+                    th:text="${unParamSN.VALSTRING}"></option>
+                  </select>
+                </div>     
+                <div class="row mb-3">
+                  <label for="ingresoStock" class="col-sm-2 col-form-label">Contador</label>
+                  <div class="col-sm-10">
+                    <input type="text" th:field="*{CONTADOREXIS}" class="form-control" id="CONTADOREXIS"
+                      placeholder="Ingrese  Stock">
+                  </div>
+                </div>                
+                <div class="row mb-3">
+                  <label for="costoCompra" class="col-sm-2 col-form-label">Costo Compra</label>
+                  <div class="col-sm-10">
+                    <input type="text" th:field="*{COSTOCOMPRA}" class="form-control" id="COSTOCOMPRA"
+                      placeholder="Ingrese  Costo Compra">
+                  </div>
+                </div>                
+                <div class="row mb-3">
+                  <label for="costoVenta" class="col-sm-2 col-form-label">Costo Venta</label>
+                  <div class="col-sm-10">
+                    <input type="text" th:field="*{COSTOVENTA}" class="form-control" id="COSTOVENTA"
+                      placeholder="Ingrese  Costo Venta">
+                  </div>
+                </div> 
+                <div class="row mb-3">
+                  <div class="col-sm-10">
+                    <button type="submit" class="btn btn-primary">Procesar</button>
+                  </div>
+                </div>  
+                </form><!-- End General Form Elements -->
+              </div>
+              <!-- ARRIBA INSERTA FORMA -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main><!-- End #main -->
+  <script type="text/javascript">
+  	function defineValor(selectObj) { 
+	  // get the index of the selected option 
+	  var idx = selectObj.selectedIndex;
+	  var which = selectObj.options[idx].value;	  
+  	}
+  </script>
+</body>
+</html>                    

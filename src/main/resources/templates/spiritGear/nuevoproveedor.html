@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{plantilla/plantilla}">
+    
+<head th:fragment="head">
+  <meta charset="utf-8">  
+</head>
+<body>
+  <main id="main" class="content">
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-23">
+          <div class="card" style="width: 50rem;">
+            <div class="card-body">
+              <div layout:fragment="espacioLayout">
+            	    <!-- DESDE AQUI INSERTA FORMA -->            		
+	                <h5 class="card-title"> Ingresar/Editar Usuario</h5>	
+	                <!-- General Form Elements -->
+                  <form th:action="@{/insertaProveedor}" th:object="${objProveedorNuevo}" method="post" >
+                  	<input type="hidden" th:field="*{IDPROVEEDOR}">
+                    <!-- Dropdown for parametros selection -->
+                    <div class="row mb-3">
+                      <label for="defineTipoId" class="col-sm-2 col-form-label">Perfil:</label>
+                      <select id="tipid" class="form-control" th:field="*{TIPOIDPRV}">
+                      <option th:each="unParam : ${listaParam}" 
+                        th:value="${unParam.SERIE}" 
+                        th:text="${unParam.VALSTRING}"></option>
+                      </select>
+                    </div>  
+                    <div class="row mb-3">
+                      <label for="ingresoId" class="col-sm-2 col-form-label">Identificacion</label>
+                      <div class="col-sm-10">
+                        <input type="text" th:field="*{IDENTIFICAPRV}" class="form-control" id="IDENTIFICAPRV"
+                          placeholder="Ingrese Identificacion">
+                      </div>
+                    </div>
+                    
+                    <div class="row mb-3">
+                      <label for="ingresoNomCmp" class="col-sm-2 col-form-label">Nombre Completo</label>
+                      <div class="col-sm-10">
+                        <input type="text" th:field="*{NOMBRECOMPLETO}" class="form-control" id="NOMBRECOMPLETO"
+                          placeholder="Ingrese Nombre Completo">
+                      </div>
+                    </div>                                              
+                    <div class="row mb-3">
+                      <label for="ingresoNomCom" class="col-sm-2 col-form-label">Nombre Comercial</label>
+                      <div class="col-sm-10">
+                        <input type="text" th:field="*{NOMBRECOMERCIAL}" class="form-control" id="NOMBRECOMERCIAL"
+                          placeholder="Ingrese Nombre Comercial">
+                      </div>
+                    </div>
+                    <div class="row mb-3">
+                      <label for="ingresoCelular" class="col-sm-2 col-form-label">Celular``</label>
+                      <div class="col-sm-10">
+                        <input type="text" th:field="*{CELULAR}" class="form-control" id="CELULAR" 
+                        placeholder="Ingrese Celular">
+                      </div>
+                    </div>  
+                    
+                    <div class="row mb-3">
+                      <label for="ingresoMail" class="col-sm-2 col-form-label">Email</label>
+                      <div class="col-sm-10">
+                        <input type="text" th:field="*{EMAIL}" class="form-control" id="EMAIL"
+                          placeholder="Ingrese Email">
+                      </div>
+                    </div>                       
+					        <div class="row mb-3">
+                      <div class="col-sm-10">
+                        <button type="submit" class="btn btn-primary">Procesar</button>
+                      </div>
+                    </div>                                                                                            	
+                  </form><!-- End General Form Elements -->            	 
+              	<!-- ARRIBA INSERTA FORMA -->
+              	 </div>
+              </div>
+            </div>
+          </div>
+        </div>	 
+    </section>
+  </main><!-- End #main -->  
+</body>
+</html>
