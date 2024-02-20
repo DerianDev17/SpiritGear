@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{plantilla/plantillaPrincipal}">
+<head th:fragment="head">
+<meta charset="utf-8">
+
+<link rel="stylesheet"
+	th:href="@{/themes/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css}">
+<link rel="stylesheet"
+	th:href="@{/themes/plugins/datatables-responsive/css/responsive.bootstrap4.min.css}">
+<link rel="stylesheet"
+	th:href="@{/themes/plugins/datatables-buttons/css/buttons.bootstrap4.min.css}">
+
+<link rel="stylesheet"
+	th:href="@{/themes/dist/css/adminlte.min.css?v=3.2.0}">
+
+</head>
+
+<body>
+	<main id="main" class="content">
+		<section class="content" layout:fragment="content">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-12">
+
+						<div class="card">
+							<div class="card-header">
+								<h3 class="card-title">Reportes</h3>
+							</div>
+							<!-- /.card-header -->
+							<div class="card-body">
+								<form th:action="@{/buscarPorFecha}" method="get">
+									<input type="date" name="fechaInicio"
+										placeholder="Fecha inicio"> <input type="date"
+										name="fechaFin" placeholder="Fecha fin">
+									<button type="submit">Buscar</button>
+								</form>
+								<table id="example1" class="table table-bordered table-striped">
+									<thead>
+										<tr>
+											<th scope="col">Nombre</th>
+											<th scope="col">ordenes</th>
+											<th scope="col">hora inicio</th>
+											<th scope="col">hora fin</th>
+											<th scope="col">tiempo estimado</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>Trident</td>
+											<td>Internet Explorer 4.0</td>
+											<td>Win 95+</td>
+											<td>4</td>
+											<td>X</td>
+										</tr>
+										<tr>
+											<td>Trident</td>
+											<td>Internet Explorer 5.0</td>
+											<td>Win 95+</td>
+											<td>5</td>
+											<td>C</td>
+										</tr>
+										<tr>
+											<td>Trident</td>
+											<td>Internet Explorer 5.5</td>
+											<td>Win 95+</td>
+											<td>5.5</td>
+											<td>A</td>
+										</tr>
+										<tr>
+											<td>Trident</td>
+											<td>Internet Explorer 6</td>
+											<td>Win 98+</td>
+											<td>6</td>
+											<td>A</td>
+										</tr>
+										<tr>
+											<td>Trident</td>
+											<td>Internet Explorer 7</td>
+											<td>Win XP SP2+</td>
+											<td>7</td>
+											<td>A</td>
+										</tr>
+									</tbody>
+
+								</table>
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</section>
+
+	</main>
+</body>
+</html>

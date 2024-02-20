@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{plantilla/plantilla}">
+    layout:decorate="~{plantilla/plantillaPrincipal}">
     
 <head th:fragment="head">
   <meta charset="utf-8">  
@@ -11,7 +11,7 @@
       <div class="row">
         <div class="col-lg-23">
           <div class="card" style="width: 50rem;">
-            <div class="card-body">
+            <div class="card-body" layout:fragment="content">
               <div layout:fragment="espacioLayout">
             	    <!-- DESDE AQUI INSERTA FORMA -->            		
 	                <h5 class="card-title"> Ingresar/Editar Usuario</h5>	

@@ -15,7 +15,7 @@ public class IndexControlador implements Serializable{
 	
 	@GetMapping("index")
 	public String iniciaPrincipal() {
-		return("/spiritGear/index");
+		return("/plantilla/plantillaPrincipal");
 	}
 
 }

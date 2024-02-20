@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{plantilla/plantilla}">
+    layout:decorate="~{plantilla/plantillaPrincipal}">
 <head th:fragment="head">
 <meta charset="utf-8">
 <title>Insert title here</title>
@@ -11,8 +11,7 @@
       <div class="row">
         <div class="col-lg-23">
           <div class="card" style="width: 74rem;">
-            <div class="card-body">
-            <div layout:fragment="espacioLayout">
+            <div class="card-body" layout:fragment="content">
                 <a th:href="@{/nuevousuario}" class="btn btn-block btn-outline-info btn-sm"
                     style="width: 15%">+Nuevo
                 </a>     
@@ -48,19 +47,19 @@
                         <td th:text="${unUsuario.CLAVEUSR}"></td>
                         <td th:text="${unUsuario.ESTATUSUSR}"></td>
                         <td>
-                          <a th:href="@{/editarUsuario/} + ${unUsuario.IDUSUARIO}" class="btn btn-outline-info">
-                          	<i class="bi bi-file-arrow-up"></i>
+                          <a th:href="@{/editarUsuario/} + ${unUsuario.IDUSUARIO}" class="btn btn-success btn-circle">
+                          	<i class="fas fa-edit"></i>
                           </a>
-                          <a th:href="@{/eliminarUsuario/} + ${unUsuario.IDUSUARIO}" class="btn btn-outline-danger">
+                          <a th:href="@{/eliminarUsuario/} + ${unUsuario.IDUSUARIO}" class="btn btn-danger btn-circle">
                           		<!-- onclick="return confirm('Seguro que desea eliminar el registro?');" -->
-                          	<i class="bi bi-eraser-fill"></i>
+                          	<i class="fas fa-trash"></i>
                           </a>
                         </td>    
                         <td></td>                                                                                                                        
                     </tr>
                   </tbody>
                 </table>
-            </div>
+            
             <!-- End Default Table Example -->
           </div>
         </div>
