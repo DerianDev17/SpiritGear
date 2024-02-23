@@ -89,4 +89,10 @@ public class UsuarioServicioImpl  implements IUsuarioServicio{
 		}
 	}
 
+	@Override
+	public Usuario buscarUsuarioNombre(String NMONICOUSUARIO) {
+		// TODO Auto-generated method stub
+		return varUsuarioRepositorio.buscarUsuarioNombre(NMONICOUSUARIO);
+	}
+
 }

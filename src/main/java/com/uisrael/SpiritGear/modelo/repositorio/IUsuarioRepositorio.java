@@ -23,5 +23,8 @@ public interface IUsuarioRepositorio extends JpaRepository<Usuario, Integer> {
 	@Query("Select u from Usuario u where u.IDUSUARIO = ?1")
 	public Usuario buscarUsuarioId(int iIdUsuarioBuscar);
 	
+	@Query("SELECT u FROM Usuario u WHERE u.NMONICOUSUARIO = ?1")
+	public Usuario buscarUsuarioNombre(String NMONICOUSUARIO);
+	
 	
 }

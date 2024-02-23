@@ -20,4 +20,6 @@ public interface IUsuarioServicio {
 	public void actualizarUsuario(Usuario nuevoUsuario);
 
 	public int borrarUsuarioId(Usuario objBorraUsuario);
+	
+	public Usuario buscarUsuarioNombre(String NMONICOUSUARIO);
 }

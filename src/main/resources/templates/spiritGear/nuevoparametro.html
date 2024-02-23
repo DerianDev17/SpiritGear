@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{plantilla/plantillaPrincipal}">
+    
+<head th:fragment="head">
+  <meta charset="utf-8">  
+</head>
+<body>
+  <main id="main" class="content">
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-23">
+          <div class="card" style="width: 50rem;">
+            <div class="card-body" layout:fragment="content">
+              <div layout:fragment="espacioLayout">
+            	    <!-- DESDE AQUI INSERTA FORMA -->            		
+	                <h5 class="card-title"> Ingresar/Editar Parametro</h5>	
+	                <!-- General Form Elements -->
+                  <form th:action="@{/insertarParametro}" th:object="${objParamNvMd}" method="post" >
+                  	<input type="hidden" th:field="*{IDPARAMETRO}">
+                    
+                    <!-- Dropdown for parametros selection -->
+                    <div class="row mb-3">
+                    <br>
+                      <label for="defineNmonico" class="col-sm-2 col-form-label">Nmonico:</label>
+  					  <div class="col-sm-10">
+                        <input type="text" th:field="*{NMONICOPARAMETRO}" class="form-control" id="NMONICOPARAMETRO"
+                          placeholder="Ingrese Nmonico">
+                      </div>
+                    </div>                    
+                    <div class="row mb-3">
+                      <label for="ingresoNmonicaSec" class="col-sm-2 col-form-label">Nnomica Secuencia</label>
+                      <div class="col-sm-10">
+                        <input type="text" th:field="*{NMONICOPARAMSEC}" class="form-control" id="NMONICOPARAMSEC"
+                          placeholder="Ingrese Nmonico Secuencia">
+                      </div>
+                    </div>                    
+                    <div class="row mb-3">
+                      <label for="ingresoSerie" class="col-sm-2 col-form-label">Serie</label>
+                      <div class="col-sm-10">
+                        <input type="text" th:field="*{SERIE}" class="form-control" id="SERIE"
+                          placeholder="Ingrese Serie">
+                      </div>
+                    </div>                                              
+                    <div class="row mb-3">
+                      <label for="ingresoNomCom" class="col-sm-2 col-form-label">Secuencia</label>
+                      <div class="col-sm-10">
+                        <input type="text" th:field="*{SECUENCIA}" class="form-control" id="SECUENCIA"
+                          placeholder="Ingrese Secuencial">
+                      </div>
+                    </div>
+                    <div class="row mb-3">
+                      <label for="ingresoDescrip" class="col-sm-2 col-form-label">Descripcion</label>
+                      <div class="col-sm-10">
+                        <input type="text" th:field="*{DESCRIPCION}" class="form-control" id="DESCRIPCION" 
+                        placeholder="Ingrese Descripcion">
+                      </div>
+                    </div>  
+                    
+                    <div class="row mb-3">
+                      <label for="ingresTexto" class="col-sm-2 col-form-label">Valor String</label>
+                      <div class="col-sm-10">
+                        <input type="text" th:field="*{VALSTRING}" class="form-control" id="VALSTRING"
+                          placeholder="Ingrese valor string">
+                      </div>
+                    </div>
+                    <div class="row mb-3">
+                      <label for="ingresEntero" class="col-sm-2 col-form-label">Valor Entero</label>
+                      <div class="col-sm-10">
+                        <input type="text" th:field="*{VALNUMERO}" class="form-control" id="VALNUMERO"
+                          placeholder="Ingrese valor entero">
+                      </div>
+                    </div>                    
+                    <div class="row mb-3">
+                      <label for="ingresoDecimal" class="col-sm-2 col-form-label">Valor Decimal</label>
+                      <div class="col-sm-10">
+                        <input type="text" th:field="*{VALMONTO}" class="form-control" id="VALMONTO"
+                          placeholder="Ingrese valor decimal">
+                      </div>
+                    </div>                                        
+                                           
+					        <div class="row mb-3">
+                      <div class="col-sm-10">
+                        <button type="submit" class="btn btn-primary">Procesar</button>
+                      </div>
+                    </div>                                                                                            	
+                  </form><!-- End General Form Elements -->            	 
+              	<!-- ARRIBA INSERTA FORMA -->
+              	 </div>
+              </div>
+            </div>
+          </div>
+        </div>	 
+    </section>
+  </main><!-- End #main -->  
+</body>
+</html>

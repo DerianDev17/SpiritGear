@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{plantilla/plantillaPrincipal}">
+<head th:fragment="head">
+  <meta charset="utf-8">  
+</head>
+
+<body>
+   <main id="main" class="content">
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-23">
+          <div class="card" style="width: 50rem;">
+            <div class="card-body" layout:fragment="content">
+              <div layout:fragment="espacioLayout">
+              	<a th:href="@{/nuevoparametro}" class="btn btn-block btn-outline-info btn-sm"
+					style="width: 15%">+Nuevo</a>
+                <h5 class="card-title">Parametros</h5>
+                <!-- Default Table -->
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Id</th>
+                      <th scope="col">Nmonico</th>
+                      <th scope="col">Nmonico Sec</th>
+                      <th scope="col">Serie</th>
+                      <th scope="col">Secuencia</th>
+                      <th scope="col">Descripcion</th>
+                      <th scope="col">Valor Caracter</th>
+                      <th scope="col">Valor Entero</th>
+                      <th scope="col">Valor Decimal</th>                                                                                                                                              
+                      <th scope="col">Proceso</th>  
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr th:each="unParametro, iterStat: ${listaparametros}">
+                      <th th:text="${unParametro.IDPARAMETRO}"></th>
+                      <td th:text="${unParametro.NMONICOPARAMETRO}"></td>
+                      <td th:text="${unParametro.NMONICOPARAMSEC}"></td>
+                      <td th:text="${unParametro.SERIE}"></td>
+                      <td th:text="${unParametro.SECUENCIA}"></td>
+                      <td th:text="${unParametro.DESCRIPCION}"></td>
+                      <td th:text="${unParametro.VALSTRING}"></td>
+                      <td th:text="${unParametro.VALNUMERO}"></td>
+                      <td th:text="${unParametro.VALMONTO}"></td>
+                      <td>
+                        <a th:href="@{/editarparametro/} + ${unParametro.IDPARAMETRO}" class="btn btn-success btn-circle">
+                        	<i class="fas fa-edit"></i>
+                        </a>
+                        <a th:href="@{/eliminarParametro/} + ${unParametro.IDPARAMETRO}" class="btn btn-danger btn-circle">
+                        	<i class="fas fa-trash"></i>
+                        </a>
+                      </td>    
+                      <td></td>                                                                                                
+                    </tr>
+                  </tbody>
+                </table>
+                <!-- End Default Table Example -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main><!-- End #main -->  
+</body>
+</html>

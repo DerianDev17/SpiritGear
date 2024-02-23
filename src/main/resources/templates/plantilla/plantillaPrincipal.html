@@ -25,7 +25,7 @@
 				<li class="nav-item"><a class="nav-link" data-widget="pushmenu"
 					href="#" role="button"><i class="fas fa-bars"></i></a></li>
 				<li class="nav-item d-none d-sm-inline-block"><a
-					href="../../index3.html" class="nav-link">Home</a></li>
+					href="../../index3.html" class="nav-link">Inicio</a></li>
 				<li class="nav-item d-none d-sm-inline-block"><a href="#"
 					class="nav-link">Contact</a></li>
 			</ul>
@@ -166,13 +166,17 @@
 
 				<div class="user-panel mt-3 pb-3 mb-3 d-flex">
 					<div class="image">
-						<img th:src="@{/themes/assets/img/messages-2.jpg}" alt="Profile" class="rounded-circle">
+						<img th:src="@{/themes/assets/img/messages-2.jpg}" alt="Profile"
+							class="rounded-circle">
 					</div>
 					<div class="info">
-						<a href="#" class="d-block">J. Ortiz</a>
+						<a href="#" class="d-block"> <span
+							th:text="${session.usuarioEncontrado.NMONICOUSUARIO}"></span> - <span
+							th:text="${session.usuarioEncontrado.CODPERFIL}"></span>
+						</a>
 					</div>
-					
-					 
+
+
 				</div>
 
 				<!-- SidebarSearch Form -->
@@ -192,7 +196,9 @@
 					<ul class="nav nav-pills nav-sidebar flex-column"
 						data-widget="treeview" role="menu" data-accordion="false">
 
-						<li class="nav-item"><a href="#" class="nav-link"> <i
+						<li class="nav-item"
+							th:if="${session.usuarioEncontrado.CODPERFIL != 'PRF001' || session.usuarioEncontrado.CODPERFIL == 'PRF002'}"><a
+							href="#" class="nav-link"> <i
 								class="nav-icon fas fa-tachometer-alt"></i>
 								<p>
 									Componentes<i class="right fas fa-angle-left"></i>
@@ -203,14 +209,18 @@
 									class="nav-link"> <i class="far fa-circle nav-icon"></i>
 										<p>Talleres</p>
 								</a></li>
-								<li class="nav-item"><a th:href="@{/listarusuarios}"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
+								<li class="nav-item"
+									th:if="${session.usuarioEncontrado.CODPERFIL == 'PRF002'}"><a
+									th:href="@{/listarusuarios}" class="nav-link"> <i
+										class="far fa-circle nav-icon"></i>
 										<p>Usuarios</p>
 								</a></li>
-								
+
 							</ul></li>
-							
-							<li class="nav-item"><a href="#" class="nav-link"> <i
+
+						<li class="nav-item"
+							th:if="${session.usuarioEncontrado.CODPERFIL == 'PRF003' || session.usuarioEncontrado.CODPERFIL == 'PRF002'}"><a
+							href="#" class="nav-link"> <i
 								class="nav-icon fas fa-tachometer-alt"></i>
 								<p>
 									Productos/Servicios<i class="right fas fa-angle-left"></i>
@@ -221,10 +231,12 @@
 									class="nav-link"> <i class="far fa-circle nav-icon"></i>
 										<p>Proveedores - Servicios/Productos</p>
 								</a></li>
-								
+
 							</ul></li>
-							
-							<li class="nav-item"><a href="#" class="nav-link"> <i
+
+						<li class="nav-item"
+							th:if="${session.usuarioEncontrado.CODPERFIL == 'PRF002'}"><a
+							href="#" class="nav-link"> <i
 								class="nav-icon fas fa-tachometer-alt"></i>
 								<p>
 									Reportes<i class="right fas fa-angle-left"></i>
@@ -235,15 +247,30 @@
 									class="nav-link"> <i class="far fa-circle nav-icon"></i>
 										<p>Reportes</p>
 								</a></li>
-								
+
+							</ul>
+							<ul class="nav nav-treeview">
+								<li class="nav-item"><a th:href="@{/consultaDispo}"
+									class="nav-link"> <i class="far fa-circle nav-icon"></i>
+										<p>Disponibilidad</p>
+								</a></li>
 							</ul></li>
 					</ul>
 				</nav>
+				<div
+					style="display: flex; justify-content: center; align-items: flex-end; height: 40vh;">
+					<form th:action="@{/logout}">
+						<button type="submit" class="btn btn-primary">Cerrar
+							sesión</button>
+					</form>
+				</div>
+
 			</div>
+
 
 		</aside>
 
-		
+
 		<div class="content-wrapper">
 			<section layout:fragment="content"></section>
 		</div>
@@ -267,21 +294,30 @@
 		th:src="@{/themes/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
 
 	<script th:src="@{/themes/dist/js/adminlte.min.js}"></script>
-	
+
 	<script th:src="@{/themes/plugins/jquery/jquery.min.js}"></script>
-	<script th:src="@{/themes/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+	<script
+		th:src="@{/themes/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
 	<script th:src="@{/themes/plugins/datatables/jquery.dataTables.min.js}"></script>
-	<script th:src="@{/themes/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js}"></script>
-	<script	th:src="@{/themes/plugins/datatables-responsive/js/dataTables.responsive.min.js}"></script>
-	<script	th:src="@{/themes/plugins/datatables-responsive/js/responsive.bootstrap4.min.js}"></script>
-	<script	th:src="@{/themes/plugins/datatables-buttons/js/dataTables.buttons.min.js}"></script>
-	<script	th:src="@{/themes/plugins/datatables-buttons/js/buttons.bootstrap4.min.js}"></script>
+	<script
+		th:src="@{/themes/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js}"></script>
+	<script
+		th:src="@{/themes/plugins/datatables-responsive/js/dataTables.responsive.min.js}"></script>
+	<script
+		th:src="@{/themes/plugins/datatables-responsive/js/responsive.bootstrap4.min.js}"></script>
+	<script
+		th:src="@{/themes/plugins/datatables-buttons/js/dataTables.buttons.min.js}"></script>
+	<script
+		th:src="@{/themes/plugins/datatables-buttons/js/buttons.bootstrap4.min.js}"></script>
 	<script th:src="@{/themes/plugins/jszip/jszip.min.js}"></script>
 	<script th:src="@{/themes/plugins/pdfmake/pdfmake.min.js}"></script>
 	<script th:src="@{/themes/plugins/pdfmake/vfs_fonts.js}"></script>
-	<script th:src="@{/themes/plugins/datatables-buttons/js/buttons.html5.min.js}"></script>
-	<script th:src="@{/themes/plugins/datatables-buttons/js/buttons.print.min.js}"></script>
-	<script th:src="@{/themes/plugins/datatables-buttons/js/buttons.colVis.min.js}"></script>
+	<script
+		th:src="@{/themes/plugins/datatables-buttons/js/buttons.html5.min.js}"></script>
+	<script
+		th:src="@{/themes/plugins/datatables-buttons/js/buttons.print.min.js}"></script>
+	<script
+		th:src="@{/themes/plugins/datatables-buttons/js/buttons.colVis.min.js}"></script>
 	<script th:src="@{/themes/dist/js/adminlte.min.js?v=3.2.0}"></script>
 	<script th:src="@{/themes/dist/js/bottons.js}"></script>
 

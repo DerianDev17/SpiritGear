@@ -22,4 +22,35 @@ public class ParametrosServicioImpl implements IParametrosServicio{
 		// TODO Auto-generated method stub
 		return varIntParamRepositorio.listarParamNmonico(inmonico);
 	}
+
+	@Override
+	public void insertaParametro(Parametros nuevoParametro) {
+		try {
+			varIntParamRepositorio.save(nuevoParametro);
+		}
+		catch (Exception e) {
+			System.out.println("Error Inserta Parametro "+ e.getMessage());
+		}
+	}
+
+	@Override
+	public int eliminarParametro(Parametros elimParametro) {
+		try {
+			varIntParamRepositorio.delete(elimParametro);
+			return 1;
+		} catch (Exception e) {
+			return 0;
+		}
+		
+	}
+
+	@Override
+	public List<Parametros> listarParametros() {
+		return varIntParamRepositorio.findAll();
+	}
+
+	@Override
+	public Parametros buscarParamIdParametro(int iIdParam) {
+		return varIntParamRepositorio.buscarParamIdParametro(iIdParam);
+	}
 }

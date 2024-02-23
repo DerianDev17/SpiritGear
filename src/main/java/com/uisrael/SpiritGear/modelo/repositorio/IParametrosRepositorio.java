@@ -17,4 +17,10 @@ public interface IParametrosRepositorio extends JpaRepository<Parametros, Intege
 	@Query("Select p from Parametros p where p.NMONICOPARAMETRO = ?1")
 	public List<Parametros> listarParamNmonico(String inmonico);
 
+	@Query("Select p from Parametros p where p.IDPARAMETRO = ?1")
+	public List<Parametros> listarParamIdParametro(int iIdParam);
+	
+	@Query("Select p from Parametros p where p.IDPARAMETRO = ?1")
+	public Parametros buscarParamIdParametro(int iIdParam);
+	
 }
